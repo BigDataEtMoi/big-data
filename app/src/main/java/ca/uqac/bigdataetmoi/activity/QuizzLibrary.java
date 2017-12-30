@@ -3,9 +3,17 @@ package ca.uqac.bigdataetmoi.activity;
 /**
  * Created by Maxime Berthet on 23/11/2017.
  */
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import ca.uqac.bigdataetmoi.database.DatabaseManager;
 
 public class QuizzLibrary {
-
+    DatabaseReference mDbRef;
+    FirebaseDatabase mDb;
 
 
     public String PersoQuestions [] = {
@@ -84,68 +92,227 @@ public class QuizzLibrary {
     };
 
 
+
+
     public String getPersoQuestion(int a) {
-        String question = PersoQuestions[a];
-        return question;
+
+        final String[] question = {new String()};
+        question[0] =PersoQuestions[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("Questions").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                question[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return question[0];
     }
 
 
     public String getPersoChoice1(int a) {
-        String choice0 = PersoChoices[a][0];
-        return choice0;
+        final String[] choice1 = {new String()};
+        choice1[0] =PersoChoices[a][0];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("Choices").child(String.valueOf(a+1)).child("0").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice1[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice1[0];
     }
 
 
     public String getPersoChoice2(int a) {
-        String choice1 = PersoChoices[a][1];
-        return choice1;
+        final String[] choice2 = {new String()};
+        choice2[0] =PersoChoices[a][1];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("Choices").child(String.valueOf(a+1)).child("1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice2[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice2[0];
     }
 
     public String getPersoChoice3(int a) {
-        String choice2 = PersoChoices[a][2];
-        return choice2;
+        final String[] choice3 = {new String()};
+        choice3[0] =PersoChoices[a][2];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("Choices").child(String.valueOf(a+1)).child("2").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice3[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice3[0];
     }
 
     public String getMoneyAnswer(int a) {
-        String answer = MoneyAnswers[a];
-        return answer;
+        final String[] answer = {new String()};
+        answer[0] = MoneyAnswers[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("MoneyAnswers").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                answer[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return answer[0];
     }
 
     public String getTimeAnswer(int a) {
-        String answer = TimeAnswers[a];
-        return answer;
+        final String[] answer = {new String()};
+        answer[0] = TimeAnswers[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("TimeAnswers").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                answer[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return answer[0];
     }
 
     public String getSecurityAnswer(int a) {
-        String answer = SecurityAnswers[a];
-        return answer;
+        final String[] answer = {new String()};
+        answer[0] = SecurityAnswers[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizPersonel").child("SecurityAnswers").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                answer[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return answer[0];
     }
 
     public static String getFacileQuestion(int a) {
-        String question = facileQuestions[a];
-        return question;
+        final String[] question = {new String()};
+        question[0] =facileQuestions[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizzFacile").child("Questions").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                question[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return question[0];
     }
 
 
     public static String getFacileChoice1(int a) {
-        String choice0 = facileChoices[a][0];
-        return choice0;
+        final String[] choice1 = {new String()};
+        choice1[0] =facileChoices[a][0];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizzFacile").child("Choices").child(String.valueOf(a+1)).child("0").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice1[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice1[0];
     }
 
 
     public static String getFacileChoice2(int a) {
-        String choice1 = facileChoices[a][1];
-        return choice1;
+        final String[] choice2 = {new String()};
+        choice2[0] =facileChoices[a][1];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizzFacile").child("Choices").child(String.valueOf(a+1)).child("1").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice2[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice2[0];
     }
 
     public static String getFacileChoice3(int a) {
-        String choice2 = facileChoices[a][2];
-        return choice2;
+        final String[] choice3 = {new String()};
+        choice3[0] =facileChoices[a][2];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizzFacile").child("Choices").child(String.valueOf(a+1)).child("2").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                choice3[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return choice3[0];
     }
 
     public static String getFacileCorrectAnswer(int a) {
-        String answer = facileCorrectAnswers[a];
-        return answer;
+        final String[] answer = {new String()};
+        answer[0] = facileCorrectAnswers[a];
+        DatabaseManager.getInstance().getQuizzRef().child("QuizzFacile").child("CorrectAnswers").child(String.valueOf(a)).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                answer[0] = snapshot.getValue().toString();
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        return answer[0];
     }
 
 }

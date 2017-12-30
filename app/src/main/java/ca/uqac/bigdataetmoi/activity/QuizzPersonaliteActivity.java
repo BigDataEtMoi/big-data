@@ -6,7 +6,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import ca.uqac.bigdataetmoi.database.DatabaseManager;
 import android.widget.Toast;
+
+import com.google.firebase.database.DatabaseReference;
 
 import java.security.Security;
 
@@ -30,6 +33,8 @@ public class QuizzPersonaliteActivity extends AppCompatActivity {
     private int TimeScore = 0;
     private int SecurityScore = 0;
     private int QuestionNumber = 0;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -133,7 +138,10 @@ public class QuizzPersonaliteActivity extends AppCompatActivity {
 
     @SuppressLint("SetTextI18n")
     private void updateQuestion(){
+
         if (QuestionNumber<QuestionLibrary.PersoQuestions.length){
+
+
             QuestionView.setText(QuestionLibrary.getPersoQuestion(QuestionNumber));
             ButtonChoice1.setText(QuestionLibrary.getPersoChoice1(QuestionNumber));
             ButtonChoice2.setText(QuestionLibrary.getPersoChoice2(QuestionNumber));
@@ -142,6 +150,7 @@ public class QuizzPersonaliteActivity extends AppCompatActivity {
             MoneyAnswer = QuestionLibrary.getMoneyAnswer(QuestionNumber);
             TimeAnswer = QuestionLibrary.getTimeAnswer(QuestionNumber);
             SecurityAnswer = QuestionLibrary.getSecurityAnswer(QuestionNumber);
+
         }
         else {
             QuestionView.setText("Résultat");
